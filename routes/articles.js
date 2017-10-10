@@ -1,9 +1,8 @@
 //jshint esversion:6
+const express = require('express');
+const router = express.Router();
 
-
-
-
-app.route('/articles')
+router.route('/')
   .get((req, res) => {
     // res = HTML generated from template
     // which generates all Articles added this far
@@ -20,7 +19,7 @@ app.route('/articles')
     // if not successful, send user back to NEW article route /articles/new and find some way to throw error
   });
 
-app.route('/articles/:title')
+router.route('/:title')
   .get((req, res) => {
     // respons with HTML generated from template which displays Article information with corresponding title
       // file name: article.hbs
@@ -33,9 +32,10 @@ app.route('/articles/:title')
   });
   // delete? Or get that from POST?
 
-app.get('/articles/new', (req, res) => {
+router.get('/new', (req, res) => {
   // contain empty form for user to create new article
   // form points to server's route for creating new article
     // file name: new.hbs
 });
 
+module.exports = router;
