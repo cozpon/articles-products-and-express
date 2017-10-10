@@ -31,11 +31,8 @@ app.get('/products', (req, res) => {
 });
 
 app.post('/products', (req, res) => {
-  // const data = req.body;
-  // data.id = ++productIds; // increments productIds then assigns to data
-  // products.push(data);
-  // console.log(products);
-  // res.json(data);
+  const data = req.body;
+  res.json(data);
 });
 
 app.engine('.hbs', exphbs({
