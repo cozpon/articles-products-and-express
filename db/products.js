@@ -1,35 +1,37 @@
 // response
 //jshint esversion:6
-( function(){
-let productStorage = [];
 
-function getProduct() {
-  return productStorage;
+class Products {
+  constructor () {
+    this._collection = [];
+    this._productIds = 0;
+  }
+  getProduct(){
+    return this._collection;
+  }
+  post (data){
+    const newProduct = {
+      id : ++this._productIds,
+      name : data.name,
+      price : data.price,
+      inventory : data.inventory
+
+    };
+    this._collection.push(newProduct);
+    return newProduct;
+  }
+  find (id) {
+
+  }
 }
 
-function postProduct(postInfo) {
-  return productStorage.push(postInfo);
-}
+
+module.exports = Products;
 
 
 
-module.exports = {
-  getProduct,
-  postProduct
-};
 
-})();
 
-// class Products {
-//   constructor(){
-//     this._collection = [];
-//   }
-// //   storeData(req.body){
-// //     if _data.push(req.body){
-// //       return {success: true}
-// //     }
-// //   }
-// }
 
 
 

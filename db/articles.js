@@ -1,5 +1,9 @@
 // response
 //jshint esversion:6
+let pass = {"sucess": true};
+let fail = {"sucess": false};
+
+
 class Products {
   constructor(){
     this._collection = [];

@@ -1,23 +1,41 @@
 //jshint esversion:6
 const exphbs = require('express-handlebars');
 const express = require('express');
+const bodyParser = require('body-parser');
 const methodOverride = require('method-override');
 const app = express();
-const PORT = process.env.PORT || 1234;
 const router = express.Router();
-const bodyParser = require('body-parser');
+app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ "extended" : true }));
 
 const products = require('./routes/products');
 app.use('/products', products);
 
-const articles = require('./routes/articles');
-app.use('/articles', articles);
+const Articles = require('./routes/articles');
+app.use('/articles', Articles);
 
 //app.use(methodOverride('_method'));
 
+
+
+
+// const products = [{ id: 1, title: 'Mulan', format: 'DVD'}];
+let productIds = 1;
+
 app.get('/', (req, res) => {
   res.send('smoke test');
+});
+
+app.get('/products', (req, res) => {
+  res.json(products);
+});
+
+app.post('/products', (req, res) => {
+  // const data = req.body;
+  // data.id = ++productIds; // increments productIds then assigns to data
+  // products.push(data);
+  // console.log(products);
+  // res.json(data);
 });
 
 app.engine('.hbs', exphbs({
@@ -27,11 +45,4 @@ app.engine('.hbs', exphbs({
 app.set('view engine', '.hbs');
 
 
-// app.use(bodyParser.json());
-
-
-
-
-app.listen(PORT, () => {
-  console.log(`server listening on: ${PORT}`);
-});
+module.exports = app;

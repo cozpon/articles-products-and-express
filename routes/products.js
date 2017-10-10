@@ -2,22 +2,37 @@
 const express = require('express');
 const router = express.Router();
 let productStorage = [];
-const productDB = require('../db/products');
+const Products = require('../db/products');
+let pass = {"sucess": true};
+let fail = {"sucess": false};
+let products = new Products();
 
 router.route('/')
   .get((req, res) => {
     console.log('GET');
-    let products = {
-      productsList : productDB.getProduct()
+    let Products = {
+      productsList : products.getProduct()
     };
-    res.send(products);
+    return res.send(Products);
   })
   .post((req, res) => {
     console.log('POST');
-    let postInfo = req.body;
-    productDB.postProduct(postInfo);
-    return res.json( {'success' : true} );
+    let data = req.body;
+    products.post(data);
+    return res.json(pass);
   });
+
+module.exports = router;
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -39,4 +54,4 @@ router.route('/')
 //     });
 
 
-module.exports = router;
+
