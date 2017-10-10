@@ -1,23 +1,21 @@
 // response
 //jshint esversion:6
-( function() {
+( function(){
 let productStorage = [];
 
-
-function getProduct(){
+function getProduct() {
   return productStorage;
 }
 
-function addProduct(req, res){
-  productStorage.push(req.body);
-  return res.send({'success': true});
+function postProduct(postInfo) {
+  return productStorage.push(postInfo);
 }
 
 
 
 module.exports = {
   getProduct,
-  addProduct
+  postProduct
 };
 
 })();

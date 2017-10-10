@@ -8,13 +8,15 @@ router.route('/')
   .get((req, res) => {
     console.log('GET');
     let products = {
-      productList : productDB.getProduct()
+      productsList : productDB.getProduct()
     };
     res.send(products);
   })
   .post((req, res) => {
     console.log('POST');
-     productDB.addProduct(req, res);
+    let postInfo = req.body;
+    productDB.postProduct(postInfo);
+    return res.json( {'success' : true} );
   });
 
 
