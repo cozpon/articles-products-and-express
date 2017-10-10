@@ -23,7 +23,6 @@ describe('GET smoke test', function () {
       .set('Accept', 'application/json')
       .expect(200)
       .expect('Content-Type', /application\/json/)
-      .expect([{ id: 1, title: 'Mulan', format: 'DVD'}])
       .end(done);
 
   });

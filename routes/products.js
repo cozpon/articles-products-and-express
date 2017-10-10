@@ -18,8 +18,13 @@ router.route('/')
   .post((req, res) => {
     console.log('POST');
     let data = req.body;
-    products.post(data);
-    return res.json(pass);
+    let successful = products.post(data);
+    if(successful) {
+      res.redirect( 200, './products' );
+    } else {
+      res.redirect( 400, './products/new');
+    }
+
   });
 
 module.exports = router;
