@@ -2,31 +2,22 @@
 const express = require('express');
 const router = express.Router();
 let productStorage = [];
-const productDB = require('./db/products');
-
-
-let i = 1;
+const productDB = require('../db/products');
 
 router.route('/')
   .get((req, res) => {
-    console.log( '/ get');
+    console.log('GET');
     let products = {
       productList : productDB.getProduct()
     };
-    res.render('./products/index', products);
-//   })
-//   .post((req, res) => {
-//     if (!req.body || !req.body.name || !req.body.price || !req.body.inventory){
-//       res.json(fail);
-//       //return reroute to /products/new & throw error
-//     } else {
-//     res.json(req.body);
-//     req.id = "id: " + i++;
-//     req.body.inventory = i++;
-//     productStorage.push(req.body);
-//     }
-
+    res.send(products);
+  })
+  .post((req, res) => {
+    console.log('POST');
+     productDB.addProduct(req, res);
   });
+
+
 
 // router.route('/:id')
 //     .put((req, res) => {
