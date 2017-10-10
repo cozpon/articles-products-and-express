@@ -29,8 +29,10 @@ router.route('/:title')
       // incoming field should be { title: String, ... } where server finds an article with TITLE property matching input
       // if successful, redirects user back to /articles/:title route, where :title is edited page
       // if unsuccessful, send user back to edit page again /article/:title/edit, and throw error
+  })
+  .delete((req, res) => {
+
   });
-  // delete? Or get that from POST?
 
 router.get('/new', (req, res) => {
   // contain empty form for user to create new article
