@@ -8,7 +8,7 @@ class Articles {
     return this._collection;
   }
   post (article){
-    let isRepost = articleIsRepost(article.name, this._collection);
+    let isRepost = articleIsRepost(article.title, this._collection);
     if(isRepost === true){
       const newProduct = {
         title : article.title,
@@ -35,15 +35,25 @@ class Articles {
       }
     }
   }
+  getArticle(url){
+    for(let i = 0; i < this._collection.length; i++){
+      console.log(this._collection[i]);
+      console.log(url);
+      if(url === this._collection[i].URL){
+
+        return this._collection[i];
+      }
+    }
+  }
 
 }
 
 
 
-function articleIsRepost(name, collection) {
+function articleIsRepost(title, collection) {
     let isRepost = true;
     for(let i = 0; i < collection.length; i++){
-      if(name === collection[i].name) isRepost = false;
+      if(title === collection[i].title) isRepost = false;
     }
     return isRepost;
   }

@@ -25,16 +25,17 @@ router.route('/')
 
 router.route('/:title')
   .get((req, res) => {
-    // respons with HTML generated from template which displays Article information with corresponding title
-      // file name: article.hbs
+    console.log(req.params.title, "FIRST");
+    let url = encodeURI(req.params.title);
+    let articles = {
+      articlesList : articlesDB.getArticle(url)
+    };
+    return res.send(articles);
   })
   .put((req, res) => {
     let url = encodeURI(req.body.title);
     let replacementData = req.body;
     let successful = articlesDB.putArticle(url, replacementData);
-    console.log(req.body);
-    console.log(req.body.title);
-
     if(successful){
       res.redirect(200, `/articles/${url}`);
     } else {

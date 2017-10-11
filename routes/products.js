@@ -2,8 +2,6 @@
 const express = require('express');
 const router = express.Router();
 const Products = require('../db/products');
-let pass = {"sucess": true};
-let fail = {"sucess": false};
 let productsDB = new Products();
 
 router.route('/')
@@ -21,10 +19,10 @@ router.route('/')
     if(successful) {
       return res.redirect(200, './products');
     } else {
-      return res.redirect(400, './products/new');
-    }
-
+        return res.redirect(400, './products/new');
+      }
   });
+
 router.route('/:id')
   .put((req, res) => {
     let id = parseInt(req.params.id);
@@ -38,10 +36,10 @@ router.route('/:id')
   })
   .get((req, res) => {
     let id = parseInt(req.params.id);
-    let Products = {
+    let products = {
       productList : productsDB.getProduct(id)
     };
-    return res.send(Products);
+    return res.send(products);
   })
   .delete((req, res) => {
     let id = parseInt(req.params.id);
