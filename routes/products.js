@@ -10,10 +10,10 @@ let productsDB = new Products();
 router.route('/')
   .get((req, res) => {
     console.log('GET');
-    let Products = {
-      productsList : productsDB.getProduct()
+    let products = {
+      productsList : productsDB.getProducts()
     };
-    return res.send(Products);
+    return res.send(products);
   })
   .post((req, res) => {
     console.log('POST');
@@ -38,8 +38,9 @@ router.route('/:id')
     }
   })
   .get((req, res) => {
+    let id = parseInt(req.params.id);
     let Products = {
-      productList : productsDB.getProduct()
+      productList : productsDB.getProduct(id)
     };
     return res.send(Products);
   })

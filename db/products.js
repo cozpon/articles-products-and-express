@@ -4,7 +4,7 @@ class Products {
     this._collection = [];
     this._productIds = 0;
   }
-  getProduct (){
+  getProducts (){
     return this._collection;
   }
   post (data){
@@ -20,7 +20,7 @@ class Products {
     return newProduct;
     }
   }
-  putProduct(id, data){
+  putProduct(id, data){ // use FIND method on arrays
     for(let i = 0; i < this._collection.length; i++){
       if(id === this._collection[i].id) {
         let matched = this._collection[i];
@@ -45,6 +45,14 @@ class Products {
     }
     return isDeleted;
   }
+  getProduct(id){
+    let ID = parseFloat(id);
+    for(let i = 0; i < this._collection.length; i++){
+      if(ID === this._collection[i].id){
+        return this._collection[i];
+      }
+    }
+  }
 }
 
 
@@ -59,13 +67,15 @@ function productIsRepost(name, collection) {
 function getIndexById(id, collection){
   let ID = parseFloat(id);
   let index = null;
-  for(var i = 0; i < collection.length; i++){
+  for(let i = 0; i < collection.length; i++){
     if(ID === collection[i].id){
       index = i;
     }
   }
   return index;
 }
+
+
 
 module.exports = Products;
 
