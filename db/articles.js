@@ -65,10 +65,10 @@ function getIndexByUrl(url, collection){
 }
 
 function articleIsRepost(title, collection) {
-    let isRepost = true;
-    for(let i = 0; i < collection.length; i++){
-      if(title === collection[i].title) isRepost = false;
-    }
+  let isRepost = true;
+  for(let i = 0; i < collection.length; i++){
+    if(title === collection[i].title) isRepost = false;
+  }
   return isRepost;
 }
 

@@ -36,6 +36,14 @@ class Products {
       }
     }
   }
+  getProduct(id){
+  let ID = parseFloat(id);
+    for(let i = 0; i < this._collection.length; i++){
+      if(ID === this._collection[i].id){
+        return this._collection[i];
+      }
+    }
+  }
   deleteProduct(id){
     let toDelete = getIndexById(id, this._collection);
     let isDeleted = false;
@@ -45,24 +53,17 @@ class Products {
     }
     return isDeleted;
   }
-  getProduct(id){
-    let ID = parseFloat(id);
-    for(let i = 0; i < this._collection.length; i++){
-      if(ID === this._collection[i].id){
-        return this._collection[i];
-      }
-    }
-  }
+
 }
 
 
 function productIsRepost(name, collection) {
-    let isRepost = true;
-    for(let i = 0; i < collection.length; i++){
-      if(name === collection[i].name) isRepost = false;
-    }
-    return isRepost;
+  let isRepost = true;
+  for(let i = 0; i < collection.length; i++){
+    if(name === collection[i].name) isRepost = false;
   }
+  return isRepost;
+}
 
 function getIndexById(id, collection){
   let ID = parseFloat(id);
