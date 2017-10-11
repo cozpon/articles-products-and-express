@@ -11,16 +11,10 @@ app.use(bodyParser.urlencoded({ "extended" : true }));
 const products = require('./routes/products');
 app.use('/products', products);
 
-const Articles = require('./routes/articles');
-app.use('/articles', Articles);
+const articles = require('./routes/articles');
+app.use('/articles', articles);
 
 //app.use(methodOverride('_method'));
-
-
-
-
-// const products = [{ id: 1, title: 'Mulan', format: 'DVD'}];
-let productIds = 1;
 
 app.get('/', (req, res) => {
   res.send('smoke test');

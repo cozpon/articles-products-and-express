@@ -20,7 +20,21 @@ class Articles {
     return newProduct;
     }
   }
-
+  putArticle(url, data){
+    for(let i = 0; i < this._collection.length; i++){
+      if(url === this._collection[i].URL) {
+        const newArticle = {
+          title : data.title,
+          body : data.body,
+          author : data.author,
+          URL : encodeURI(data.title),
+        };
+      this._collection[i] = newArticle;
+      console.log(newArticle);
+      return newArticle;
+      }
+    }
+  }
 
 }
 
