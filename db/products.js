@@ -53,9 +53,7 @@ class Products {
     }
     return isDeleted;
   }
-
 }
-
 
 function productIsRepost(name, collection) {
   let isRepost = true;

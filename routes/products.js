@@ -10,7 +10,7 @@ router.route('/')
     let products = {
       productsList : productsDB.getProducts()
     };
-    return res.send(products);
+    return res.render('./partials/products/index', products);
   })
   .post((req, res) => {
     console.log('POST');
@@ -39,7 +39,7 @@ router.route('/:id')
     let products = {
       productList : productsDB.getProduct(id)
     };
-    return res.send(products);
+    return res.render('./partials/products/product', productsDB.getProduct(id));
   })
   .delete((req, res) => {
     let id = parseInt(req.params.id);
