@@ -24,7 +24,28 @@ class Products {
 
   }
 
+  putProduct(id, name){
+    for(let i = 0; i < this._collection.length; i++){
+    if(id === this._collection[i].id) {
+      let matched = this._collection[i];
+      let editedName = matched.name = name;
+      return editedName;
+      }
+    }
+  }
 }
+  // }
+  //   let findMatch = findID(id, this._collection);
+  //   // const editedProduct = {
+  //   //   id : id,
+  //   //   name : findMatch.name
+  //   //   price :
+
+
+    // console.log(name, "NEW NAME");
+    // return name;
+
+
 
 function productIsRepost(name, collection) {
     let isRepost = true;
@@ -33,6 +54,14 @@ function productIsRepost(name, collection) {
     }
     return isRepost;
   }
+
+// function findID(id, collection){
+//   for(let i = 0; i < collection.length; i++){
+//     if(id === collection[i].id) {
+//       return collection[i];
+//     }
+//   }
+// }
 
 module.exports = Products;
 

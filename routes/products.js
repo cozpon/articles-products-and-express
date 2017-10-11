@@ -5,26 +5,44 @@ let productStorage = [];
 const Products = require('../db/products');
 let pass = {"sucess": true};
 let fail = {"sucess": false};
-let products = new Products();
+let productsDB = new Products();
 
 router.route('/')
   .get((req, res) => {
     console.log('GET');
     let Products = {
-      productsList : products.getProduct()
+      productsList : productsDB.getProduct()
     };
     return res.send(Products);
   })
   .post((req, res) => {
     console.log('POST');
     let data = req.body;
-    let successful = products.post(data);
+    let successful = productsDB.post(data);
     if(successful) {
-      res.redirect( 200, './products' );
+      return res.redirect( 200, './products' );
     } else {
-      res.redirect( 400, './products/new');
+      return res.redirect( 400, './products/new');
     }
 
+  });
+router.route('/:id')
+  .put((req, res) => {
+    let data = parseInt(req.params.id);
+    let replacementName = req.body.name;
+    let successful = productsDB.putProduct(data, replacementName);
+    if(successful){
+      res.redirect(200, `/products/${req.params.id}`);
+    } else {
+      res.redirect(400, `/products/${req.params.id}/edit`);
+    }
+
+  })
+  .get((req, res) => {
+    let Products = {
+      productList : productsDB.getProduct()
+    };
+    return res.send(Products);
   });
 
 module.exports = router;

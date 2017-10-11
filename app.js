@@ -22,9 +22,9 @@ app.use('/articles', Articles);
 // const products = [{ id: 1, title: 'Mulan', format: 'DVD'}];
 let productIds = 1;
 
-app.get('/', (req, res) => {
-  res.send('smoke test');
-});
+// app.get('/', (req, res) => {
+//   res.send('smoke test');
+// });
 
 app.get('/products', (req, res) => {
   res.json(products);
