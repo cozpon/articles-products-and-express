@@ -1,14 +1,28 @@
 //jshint esversion:6
 const express = require('express');
 const router = express.Router();
+const Articles = require('../db/articles');
+let pass = {"sucess": true};
+let fail = {"sucess": false};
+let articlesDB = new Articles();
 
 router.route('/')
   .get((req, res) => {
-    // res = HTML generated from template
-    // which generates all Articles added this far
-      // file name: index.hbs
+    console.log('GET');
+    let articles = {
+      articlesList : articlesDB.getArticles()
+    };
+    return res.send(articles);
   })
   .post((req, res) => {
+    console.log('POST');
+    let data = req.body;
+    let successful = articlesDB.post(data);
+    if(successful) {
+      return res.redirect(200, './products');
+    } else {
+        return res.redirect(400, './products/new');
+      }
     // creates new article:
       // { title: String, body: String, author: String }
       // from this request, you save data with urlTitle { title: String, body: String, author: String, urlTitle: String }

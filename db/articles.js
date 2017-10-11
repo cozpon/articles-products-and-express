@@ -1,17 +1,28 @@
-// response
 //jshint esversion:6
-let pass = {"sucess": true};
-let fail = {"sucess": false};
-
-
-class Products {
+class Articles {
   constructor(){
     this._collection = [];
   }
 
-//   storeData(req.body){
-//     if _data.push(req.body){
-//       return {success: true}
-//     }
-//   }
+  getArticles (){
+    return this._collection;
+  }
+
+  post (data){
+    let isRepost = productIsRepost(data.name, this._collection);
+    if(isRepost === true){
+    const newProduct = {
+      id : ++this._productIds,
+      title : data.title,
+      body : data.body,
+      author : data.author
+    };
+    this._collection.push(newProduct);
+    return newProduct;
+    }
+  }
+
+
 }
+
+module.exports = Articles;
