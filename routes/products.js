@@ -36,13 +36,21 @@ router.route('/:id')
     } else {
       res.redirect(400, `/products/${req.params.id}/edit`);
     }
-
   })
   .get((req, res) => {
     let Products = {
       productList : productsDB.getProduct()
     };
     return res.send(Products);
+  })
+  .delete((req, res) => {
+    let id = parseInt(req.params.id);
+    let isDeleted = productsDB.deleteProduct(id);
+    if(isDeleted){
+      res.redirect(200, `/products`);
+    } else {
+      res.redirect(400, `/products/${req.params.id}`);
+    }
   });
 
 module.exports = router;

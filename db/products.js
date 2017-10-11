@@ -22,22 +22,29 @@ class Products {
   }
   putProduct(id, data){
     for(let i = 0; i < this._collection.length; i++){
-    if(id === this._collection[i].id) {
-      let matched = this._collection[i];
-       const newProduct = {
-        id : this._collection[i].id,
-        name : data.name,
-        price : data.price,
-        inventory : data.inventory
-      };
+      if(id === this._collection[i].id) {
+        let matched = this._collection[i];
+        const newProduct = {
+          id : this._collection[i].id,
+          name : data.name,
+          price : data.price,
+          inventory : data.inventory
+        };
       this._collection[i] = newProduct;
       console.log(newProduct);
       return newProduct;
       }
-
     }
   }
-
+  deleteProduct(id){
+    let toDelete = getIndexById(id, this._collection);
+    let isDeleted = false;
+    if(toDelete !== null){
+      this._collection.splice(toDelete, 1);
+      isDeleted = true;
+    }
+    return isDeleted;
+  }
 }
 
 
@@ -49,6 +56,16 @@ function productIsRepost(name, collection) {
     return isRepost;
   }
 
+function getIndexById(id, collection){
+  let ID = parseFloat(id);
+  let index = null;
+  for(var i = 0; i < collection.length; i++){
+    if(ID === collection[i].id){
+      index = i;
+    }
+  }
+  return index;
+}
 
 module.exports = Products;
 
