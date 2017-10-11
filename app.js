@@ -20,7 +20,7 @@ const articles = require('./routes/articles');
 app.use(methodOverride('_method'));
 
 app.get('/', (req, res) => {
-  res.render('home', { hell : "A Weird Website That Has Articles & Buttons!"});
+  res.render('home', { hell : "A Weird Website That Has Articles & Products!"});
 });
 
 app.use('/articles', articles);
