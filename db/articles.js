@@ -37,25 +37,39 @@ class Articles {
   }
   getArticle(url){
     for(let i = 0; i < this._collection.length; i++){
-      console.log(this._collection[i]);
-      console.log(url);
       if(url === this._collection[i].URL){
-
         return this._collection[i];
       }
     }
   }
+  deleteArticle(url){
+    let toDelete = getIndexByUrl(url, this._collection);
+    let isDeleted = false;
+    if(toDelete !== null){
+      this._collection.splice(toDelete, 1);
+      isDeleted = true;
+    }
+    return isDeleted;
+  }
 
 }
 
-
+function getIndexByUrl(url, collection){
+  let index = null;
+  for(let i = 0; i < collection.length; i++){
+    if(url === collection[i].URL){
+      index = i;
+    }
+  }
+  return index;
+}
 
 function articleIsRepost(title, collection) {
     let isRepost = true;
     for(let i = 0; i < collection.length; i++){
       if(title === collection[i].title) isRepost = false;
     }
-    return isRepost;
-  }
+  return isRepost;
+}
 
 module.exports = Articles;

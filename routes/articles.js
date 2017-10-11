@@ -25,10 +25,9 @@ router.route('/')
 
 router.route('/:title')
   .get((req, res) => {
-    console.log(req.params.title, "FIRST");
     let url = encodeURI(req.params.title);
     let articles = {
-      articlesList : articlesDB.getArticle(url)
+      article : articlesDB.getArticle(url)
     };
     return res.send(articles);
   })
@@ -43,7 +42,13 @@ router.route('/:title')
       }
   })
   .delete((req, res) => {
-
+    let url = encodeURI(req.body.title);
+    let isDeleted = articlesDB.deleteArticle(url);
+    if(isDeleted){
+      res.redirect(200, `/articles`);
+    } else {
+      res.redirect(400, `/articles/${url}`);
+    }
   });
 
 router.get('/new', (req, res) => {
