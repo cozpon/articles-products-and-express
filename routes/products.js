@@ -20,17 +20,17 @@ router.route('/')
     let data = req.body;
     let successful = productsDB.post(data);
     if(successful) {
-      return res.redirect( 200, './products' );
+      return res.redirect(200, './products');
     } else {
-      return res.redirect( 400, './products/new');
+      return res.redirect(400, './products/new');
     }
 
   });
 router.route('/:id')
   .put((req, res) => {
-    let data = parseInt(req.params.id);
-    let replacementName = req.body.name;
-    let successful = productsDB.putProduct(data, replacementName);
+    let id = parseInt(req.params.id);
+    let replacementData = req.body;
+    let successful = productsDB.putProduct(id, replacementData);
     if(successful){
       res.redirect(200, `/products/${req.params.id}`);
     } else {

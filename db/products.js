@@ -20,31 +20,25 @@ class Products {
     return newProduct;
     }
   }
-  find (id) {
-
-  }
-
-  putProduct(id, name){
+  putProduct(id, data){
     for(let i = 0; i < this._collection.length; i++){
     if(id === this._collection[i].id) {
       let matched = this._collection[i];
-      let editedName = matched.name = name;
-      return editedName;
+       const newProduct = {
+        id : this._collection[i].id,
+        name : data.name,
+        price : data.price,
+        inventory : data.inventory
+      };
+      this._collection[i] = newProduct;
+      console.log(newProduct);
+      return newProduct;
       }
+
     }
   }
+
 }
-  // }
-  //   let findMatch = findID(id, this._collection);
-  //   // const editedProduct = {
-  //   //   id : id,
-  //   //   name : findMatch.name
-  //   //   price :
-
-
-    // console.log(name, "NEW NAME");
-    // return name;
-
 
 
 function productIsRepost(name, collection) {
@@ -55,13 +49,6 @@ function productIsRepost(name, collection) {
     return isRepost;
   }
 
-// function findID(id, collection){
-//   for(let i = 0; i < collection.length; i++){
-//     if(id === collection[i].id) {
-//       return collection[i];
-//     }
-//   }
-// }
 
 module.exports = Products;
 
