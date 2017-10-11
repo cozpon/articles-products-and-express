@@ -7,16 +7,15 @@ class Articles {
   getArticles (){
     return this._collection;
   }
-
-  post (data){
-    let isRepost = productIsRepost(data.name, this._collection);
+  post (article){
+    let isRepost = articleIsRepost(article.name, this._collection);
     if(isRepost === true){
-    const newProduct = {
-      id : ++this._productIds,
-      title : data.title,
-      body : data.body,
-      author : data.author
-    };
+      const newProduct = {
+        title : article.title,
+        body : article.body,
+        author : article.author,
+        URL : encodeURI(article.title),
+      };
     this._collection.push(newProduct);
     return newProduct;
     }
@@ -24,5 +23,15 @@ class Articles {
 
 
 }
+
+
+
+function articleIsRepost(name, collection) {
+    let isRepost = true;
+    for(let i = 0; i < collection.length; i++){
+      if(name === collection[i].name) isRepost = false;
+    }
+    return isRepost;
+  }
 
 module.exports = Articles;
