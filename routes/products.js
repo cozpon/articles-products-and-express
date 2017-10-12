@@ -11,20 +11,17 @@ router.get('/new', (req, res) => {
 router.get('/:id/edit', (req, res) => {
   let id = parseInt(req.params.id);
   let foundProduct = productsDB.getProduct(id);
-  console.log(foundProduct);
   res.render('partials/products/edit', foundProduct);
 });
 
 router.route('/')
   .get((req, res) => {
-    console.log('GET');
     let products = {
       productsList : productsDB.getProducts()
     };
     return res.render('partials/products/index', products);
   })
   .post((req, res) => {
-    console.log('POST');
     let data = req.body;
     let successful = productsDB.post(data);
     if(successful) {

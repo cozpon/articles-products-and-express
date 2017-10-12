@@ -1,12 +1,24 @@
-<h1> Articles </h1>
+<h1> Article (singular) </h1>
 
-<div class="articles">
-  {{#each article}}
-  <h3>Title: {{title}}</h3>
-    <ul>
-      <li>By: {{author}}</li>
-      <li>{{body}}</li>
-      <li>URL: {{URL}}</li>
+<div class="articles/:title">
+<ul>
+      <li>Title: {{title}}</li>
+      <li>Author: {{author}}</li>
+      <li>Body: {{Bodyy}}</li>
     </ul>
-    {{/each}}
   </div>
+<br>
+<br>
+<br>
+<form action="/articles/{{title}}/edit" method="GET" >
+  <input type="submit" value="Edit Product">
+</form>
+<br>
+
+<form action="/articles/{{title}}?_method=DELETE" method="POST" >
+  <input type="submit" value="Delete Product">
+</form>
+<br>
+
+<a href="/articles" class="button"> Back to Products</a>
+{{> footer}}

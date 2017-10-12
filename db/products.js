@@ -21,7 +21,6 @@ class Products {
     }
   }
   putProduct(id, data){ // use FIND method on arrays
-    console.log(data);
     for(let i = 0; i < this._collection.length; i++){
       if(id === this._collection[i].id) {
         let matched = this._collection[i];
@@ -41,8 +40,6 @@ class Products {
   let ID = parseFloat(id);
     for(let i = 0; i < this._collection.length; i++){
       if(ID === this._collection[i].id){
-        console.log("This", this._collection);
-        console.log("i", i);
         return this._collection[i];
       }
     }

@@ -30,7 +30,6 @@ class Articles {
           URL : encodeURI(data.title),
         };
       this._collection[i] = newArticle;
-      console.log(newArticle);
       return newArticle;
       }
     }
