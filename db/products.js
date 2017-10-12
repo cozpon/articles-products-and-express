@@ -8,8 +8,8 @@ class Products {
     return this._collection;
   }
   post (data){
-    let isRepost = productIsRepost(data.name, this._collection);
-    if(isRepost === true){
+    let isNotRepost = productIsRepost(data.name, this._collection);
+    if(isNotRepost === true){
     const newProduct = {
       id : ++this._productIds,
       name : data.name,
@@ -21,6 +21,7 @@ class Products {
     }
   }
   putProduct(id, data){ // use FIND method on arrays
+    console.log(data);
     for(let i = 0; i < this._collection.length; i++){
       if(id === this._collection[i].id) {
         let matched = this._collection[i];
@@ -40,6 +41,8 @@ class Products {
   let ID = parseFloat(id);
     for(let i = 0; i < this._collection.length; i++){
       if(ID === this._collection[i].id){
+        console.log("This", this._collection);
+        console.log("i", i);
         return this._collection[i];
       }
     }
@@ -56,11 +59,11 @@ class Products {
 }
 
 function productIsRepost(name, collection) {
-  let isRepost = true;
+  let isNotRepost = true;
   for(let i = 0; i < collection.length; i++){
-    if(name === collection[i].name) isRepost = false;
+    if(name === collection[i].name) isNotRepost = false;
   }
-  return isRepost;
+  return isNotRepost;
 }
 
 function getIndexById(id, collection){
@@ -72,6 +75,12 @@ function getIndexById(id, collection){
     }
   }
   return index;
+}
+
+function findItem(array, title) {
+  return array.find(item => {
+    return item.title === title;
+  });
 }
 
 

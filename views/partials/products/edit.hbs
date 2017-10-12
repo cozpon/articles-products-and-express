@@ -1,0 +1,40 @@
+<h1> Product Edit </h1>
+<style>
+.button {
+    background-color: cornflowerblue;
+    color: red;
+    padding: 15px 12px;
+    text-align: center;
+    text-decoration: bold;
+    display: inline-block;
+    font-size: 20px;
+    margin: 10px 20px;
+    border-radius: 50%;
+}
+</style>
+
+<div class=":id/edit">
+  <form action="/products/{{id}}?_method=PUT" method="POST" >
+
+  Name: <input type="text", name= "name" value={{name}}>
+  Price: <input type="text", name= "price" value={{price}}>
+  Inventory: <input type="text", name= "inventory" value ={{inventory}}>
+  <button type="submit">Submit</button>
+</form>
+</div>
+<ul class=':id/edit'>
+  <br>
+  <h3>Original:</h3>
+  <li>name: {{{name}}}</li>
+  <li>price: {{price}}</li>
+  <li>inventory: {{inventory}}</li>
+</ul>
+<br>
+<form action="/products/{{id}}?_method=DELETE" method="POST">
+  <input type="submit" value="Delete Product">
+</form>
+<br>
+<a href="/products" class="button"> Back to Products</a>
+{{> footer}}
+
+

@@ -1,0 +1,26 @@
+<h1> Create a new Product </h1>
+<style>
+.button {
+    background-color: cornflowerblue;
+    color: red;
+    padding: 15px 12px;
+    text-align: center;
+    text-decoration: bold;
+    display: inline-block;
+    font-size: 20px;
+    margin: 10px 20px;
+    border-radius: 50%;
+}
+</style>
+
+
+<form action="/products" method="POST">
+  Name: <input type="text", name="name">
+  Price: <input type="text", name="price">
+  Inventory: <input type="text", name="inventory">
+  <button type="submit">Submit</button>
+</form>
+
+
+
+{{> footer}}

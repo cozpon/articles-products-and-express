@@ -1,10 +1,41 @@
-<h1> Product singular </h1>
+<h1> Product (singular) </h1>
+<style>
+.button {
+    background-color: cornflowerblue;
+    color: red;
+    padding: 15px 12px;
+    text-align: center;
+    text-decoration: bold;
+    display: inline-block;
+    font-size: 20px;
+    margin: 10px 20px;
+    border-radius: 50%;
+}
+</style>
 
 <div class="products/:id">
-  <h3>Name: {{name}}</h3>
+
     <ul>
-      <li>ID #: {{id}}</li>
-      <li>Price:{{price}}</li>
+      <li>Name: {{name}}</li>
+      <li>ID: {{id}}</li>
+      <li>Price: {{price}}</li>
       <li>Inventory: {{inventory}}</li>
     </ul>
   </div>
+<br>
+<br>
+<br>
+<form action="/products/{{id}}/edit" method="GET" >
+  <input type="submit" value="Edit Product">
+</form>
+<br>
+
+<form action="/products/{{id}}?_method=DELETE" method="POST" >
+  <input type="submit" value="Delete Product">
+</form>
+<br>
+
+<a href="/products" class="button"> Back to Products</a>
+{{> footer}}
+
+
