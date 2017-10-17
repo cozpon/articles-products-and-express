@@ -1,18 +1,18 @@
-<h1> Products, daddio! </h1>
+<h1> Products! </h1>
 <a href="/products/new" class="button">Make New Product!</a>
   <div class="products">
-  <ul class='productList'>
-    {{#each productsList}}
+  <ul class='products'>
+
+    {{#each products}}
       <br>
-      <li>ID : {{id}}</li>
-      <li>Name : {{name}}</li>
+
+      <li>Name : {{this.name}}</li>
       <li>Price : {{price}}</li>
       <li>Inventory : {{inventory}}</li>
       <br>
       <form action="/products/{{id}}/edit" method="GET" >
        <input type="submit" value="Edit Product">
       </form>
-
     {{/each}}
   </ul>
 </div>
