@@ -20,34 +20,42 @@ class Products {
       console.log('ERROR', error);
     });
   }
-  post (data) {
-    const newProduct = {
+
+  listOne(id) {
+    console.log(id, "YO");
+    let query = 'SELECT (id, name, price, inventory) FROM products WHERE id = $1;';
+    let params = id;
+    return db.one(query, params)
+    .then((product) => {
+      return product;
+    })
+    .catch((error) => {
+      console.log('ERROR:', error);
+    });
+  }
+
+  create(data) {
+    const product = {
       id : data.id,
       name : data.name,
       price : data.price,
       inventory : data.inventory
     };
-    if (!newProduct.name || !newProduct.price || !newProduct.inventory) {
+    if (!product.name || !product.price || !product.inventory) {
       throw new Error ('invalid');
     }
-    return db.one('INSERT INTO products (name, price, inventory) VALUES ($1, $2, $3)', [newProduct.name, newProduct.price, newProduct.inventory])
+    let query = 'INSERT INTO products (name, price, inventory) VALUES ($1, $2, $3)';
+    let params = [product.name, product.price, product.inventory];
+    return db.one(query, params)
       .then((data) => {
         console.log('DATA', data);
-        return data; // print new user ID;
+        return data;
       })
       .catch((error) => {
-        console.log('ERROR:', error); // print error
+        console.log('ERROR: 2', error); // print error
       });
     }
   }
 
 
 module.exports = Products;
-
-
-//     let query = 'INSERT INTO products VALUES($2, $3, $4)';
-//     let params = [name, price, inventory];
-//     return db.any(query, params);
-//   }
-
-
