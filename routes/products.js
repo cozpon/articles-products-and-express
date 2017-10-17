@@ -23,7 +23,10 @@ router.route('/')
     let data = req.body;
     let result = products.create(data)
     .then((product) => {
-      return res.send(product);
+      return res.render('partials/products/index', product);
+    })
+    .catch((error) => {
+      console.log(error);
     });
   });
 
@@ -41,12 +44,13 @@ router.route('/:id')
 
 router.get('/:id/edit', (req, res) => {
   let id = req.params.id;
-  console.log(id);
   let foundProduct = products.update(id)
   .then((product) => {
-    return res.render('partials/products/edit',foundProduct);
+    let locals = {
+      product : product
+    };
+    return res.render('partials/products/edit', locals);
   });
-
 });
 
 

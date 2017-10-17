@@ -18,7 +18,7 @@ const products = require('./routes/products');
 app.use('/products', products);
 
 app.get('/', (req, res) => {
-  res.render('home', { hell : "server SH"});
+  res.render('home', { hell : "HELL"});
 });
 
 app.listen(1234, () =>{

@@ -56,22 +56,13 @@ class Products {
       });
   }
 
-  update(data) {
-    const product = {
-      id : data.id,
-      name : data.name,
-      price : data.price,
-      inventory : data.inventory
-    };
-    if (!product.name || !product.price || !product.inventory) {
-      console.log('ERROR', error);
-    }
-    let query = 'UPDATE products (name, price, inventory) SET ($1, $2, $3) WHERE id = $1';
-    let params = [product.name, product.price, product.inventory];
+  update(id) {
+    let query = 'SELECT * FROM products WHERE id = $1';
+    let params = id;
     return db.one(query, params)
-    .then((data) => {
-      console.log('DATA TO UPDATE', data);
-      return data;
+    .then((product) => {
+      console.log(product);
+      return product;
     })
     .catch((error) => {
       console.log("ERROR", error);
