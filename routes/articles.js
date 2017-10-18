@@ -52,8 +52,8 @@ router.route('/:title')
     });
   })
   .delete((req, res) => {
-    let id = req.params.id;
-    let isDeleted = articles.delete(id)
+    let url = encodeURI(req.params.title);
+    let isDeleted = articles.delete(url)
     .then((article) => {
       let local = {
         article : article

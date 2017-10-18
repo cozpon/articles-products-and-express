@@ -1,5 +1,4 @@
 <h1> Articles (singular) </h1>
-
 <div class="articles/:title">
     <ul>
       <li>Title: {{article.title}}</li>
@@ -8,12 +7,15 @@
     </ul>
   </div>
 <br>
-
-<a href="/articles/{{article.title}}/edit" method="PUT" class="button"> Edit Article </a>
+<br>
+<form action="/articles/{{article.title}}/edit" method="PUT" >
+  <input type="submit" value="Edit Article">
+</form>
 <br>
 <br>
-<br>
-<a href="/articles/{{article.title}}?_method=DELETE" method="POST" class="button"> Delete Article </a>
+<form action="/articles/{{article.title}}?_method=DELETE" method="POST" >
+  <input type="submit" value="Delete Article">
+</form>
 <br>
 <br>
 <a href="/articles" class="button"> Back to Articles</a>

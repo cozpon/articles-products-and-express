@@ -21,7 +21,7 @@ CREATE TABLE articles
 (
   id SERIAL PRIMARY KEY,
   title VARCHAR(180) NOT NULL,
-  body VARCHAR(80) NOT NULL,
+  body TEXT NOT NULL,
   author VARCHAR(180) NOT NULL,
   unique_url VARCHAR(500) NOT NULL,
   created_at TIMESTAMPTZ NOT NULL DEFAULT now()

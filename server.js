@@ -26,6 +26,5 @@ app.get('/', (req, res) => {
 });
 
 app.listen(1234, () =>{
-  console.log(`Server's UP`);
 });
 module.exports = app;

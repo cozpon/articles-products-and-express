@@ -54,8 +54,6 @@ class Products {
   }
 
   update(id, replacementData) {
-    console.log(replacementData, "YO");
-    console.log(id, "ID");
     let updateQuery = 'UPDATE products SET name = $1, price = $2, inventory = $3 WHERE id = $4;';
     let params = [replacementData.name, replacementData.price, replacementData.inventory, id];
     return db.none(updateQuery, params)
@@ -68,7 +66,6 @@ class Products {
   }
 
   delete(id) {
-    console.log(id);
     let deleteQuery = 'DELETE FROM products WHERE id = $1;';
     let params = id;
     return db.none(deleteQuery, params)
@@ -80,8 +77,6 @@ class Products {
     });
   }
 }
-
-
 
 
 class Articles {
@@ -96,8 +91,6 @@ class Articles {
     });
   }
   create(data) {
-    console.log(data.title);
-    console.log(encodeURI(data.title));
     const article = {
       id : data.id,
       title : data.title,
@@ -130,8 +123,6 @@ class Articles {
     });
   }
   update(url, replacementData) {
-    console.log(replacementData, "REAPLCE");
-    console.log(url, "ID");
     let updateQuery = 'UPDATE articles SET title = $1, author = $2, body = $3, unique_url = $5 WHERE unique_url = $4;';
     let params = [replacementData.title, replacementData.author, replacementData.body, url, encodeURI(replacementData.title)];
     return db.none(updateQuery, params)
@@ -143,7 +134,6 @@ class Articles {
     });
   }
   delete(url) {
-    console.log(url);
     let deleteQuery = 'DELETE FROM articles WHERE unique_url = $1;';
     let params = url;
     return db.oneOrNone(deleteQuery, params)
