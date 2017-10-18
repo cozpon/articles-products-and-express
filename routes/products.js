@@ -23,7 +23,7 @@ router.route('/')
     let data = req.body;
     let result = products.create(data)
     .then((product) => {
-      return res.render('partials/products/index', product);
+      return res.redirect('/products');
     })
     .catch((error) => {
       console.log(error);
@@ -40,11 +40,25 @@ router.route('/:id')
       };
       return res.render('partials/products/product', local);
     });
+  })
+  .put ((req, res) => {
+    console.log(req.body, "ROUTES");
+    let id = req.params.id;
+    console.log(id, "ROUTES ID");
+    // let replacementData = req.body;
+    let update = products.update(id, req.body)
+    .then((product) => {
+      let local = {
+        product : product
+      };
+      return res.redirect('/products');
+    });
   });
+
 
 router.get('/:id/edit', (req, res) => {
   let id = req.params.id;
-  let foundProduct = products.update(id)
+  let foundProduct = products.listOne(id)
   .then((product) => {
     let locals = {
       product : product

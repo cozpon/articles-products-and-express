@@ -2,16 +2,14 @@
 <a href="/products/new" class="button">Make New Product!</a>
   <div class="products">
   <ul class='products'>
-
     {{#each products}}
       <br>
-
-      <li>Name : {{this.name}}</li>
+      <li>Name : {{name}}</li>
       <li>Price : {{price}}</li>
       <li>Inventory : {{inventory}}</li>
       <br>
-      <form action="/products/{{id}}/edit" method="GET" >
-       <input type="submit" value="Edit Product">
+      <form action="/products/{{id}}/" method="GET" >
+       <input type="submit" value="Select Product">
       </form>
     {{/each}}
   </ul>
