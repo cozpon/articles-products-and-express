@@ -132,8 +132,8 @@ class Articles {
   update(url, replacementData) {
     console.log(replacementData, "REAPLCE");
     console.log(url, "ID");
-    let updateQuery = 'UPDATE articles SET title = $1, author = $2, body = $3 WHERE unique_url = $4;';
-    let params = [replacementData.title, replacementData.author, replacementData.body, url];
+    let updateQuery = 'UPDATE articles SET title = $1, author = $2, body = $3, unique_url = $5 WHERE unique_url = $4;';
+    let params = [replacementData.title, replacementData.author, replacementData.body, url, encodeURI(replacementData.title)];
     return db.none(updateQuery, params)
     .then((article) => {
       return article;
