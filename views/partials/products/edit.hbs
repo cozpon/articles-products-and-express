@@ -2,7 +2,6 @@
 
 <div class=":id/edit">
  <form action="/products/{{product.id}}?_method=PUT" method="POST" >
-
   Name: <input type="text", name= "name" value="{{product.name}}">
   Price: <input type="text", name= "price" value="{{product.price}}">
   Inventory: <input type="text", name= "inventory" value ="{{product.inventory}}">
@@ -17,9 +16,7 @@
   <li>inventory: {{product.inventory}}</li>
 </ul>
 <br>
-<form action="/products/{{id}}?_method=DELETE" method="POST">
-  <input type="submit" value="Delete Product">
-</form>
+<a href="/products/{{id}}?_method=DELETE" method="POST" class="button">Delete Product</a>
 <br>
 <a href="/products" class="button"> Back to Products</a>
 {{> footer}}

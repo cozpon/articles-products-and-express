@@ -1,0 +1,22 @@
+<h1> Article Edit </h1>
+
+<div class=":title/edit">
+  <form action="/articles/{{article.title}}?_method=PUT" method="POST" >
+  Title: <input type="text", name= "name" value='{{article.title}}'>
+  Author: <input type="text", name= "author" value='{{article.author}}'>
+  Body: <input type="text", name= "body" value ='{{article.body}}'>
+  <button type="submit">Submit</button>
+</form>
+</div>
+<ul class=':title/edit'>
+  <br>
+  <h3>Original:</h3>
+  <li>title: {{{article.title}}}</li>
+  <li>author: {{article.author}}</li>
+  <li>body: {{article.body}}</li>
+</ul>
+<br>
+<a href="/articles/{{title}}?_method=DELETE" method="POST" class="button"> Delete Article </a>
+<br>
+<a href="/articles" class="button"> Back to Articles</a>
+{{> footer}}

@@ -1,0 +1,24 @@
+<h1> Articles (singular) </h1>
+
+<div class="articles/:id">
+    <ul>
+      <li>Title: {{article.title}}</li>
+      <li>Author: {{article.author}}</li>
+      <li>Body: {{article.body}}</li>
+    </ul>
+  </div>
+<br>
+<br>
+<br>
+<form action="/articles/{{article.title}}/edit" method="PUT" >
+  <input type="submit" value="Edit Articles">
+</form>
+<br>
+
+<form action="/articles/{{article.title}}?_method=DELETE" method="POST" >
+  <input type="submit" value="Delete Articles">
+</form>
+<br>
+
+<a href="/articles" class="button"> Back to Articles</a>
+{{> footer}}

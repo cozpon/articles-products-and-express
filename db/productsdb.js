@@ -60,8 +60,21 @@ class Products {
     console.log(id, "ID");
     let updateQuery = 'UPDATE products SET name = $1, price = $2, inventory = $3 WHERE id = $4;';
     let params = [replacementData.name, replacementData.price, replacementData.inventory, id];
-    return db.oneOrNone(updateQuery, params)
+    return db.none(updateQuery, params)
     .then((product) => {
+      return product;
+    })
+    .catch((error) => {
+      console.log("ERROR", error);
+    });
+  }
+
+  delete(id) {
+    console.log(id);
+    let deleteQuery = 'DELETE FROM products WHERE id = $1;';
+    let params = id;
+    return db.none(deleteQuery, params)
+    .then ((product) => {
       return product;
     })
     .catch((error) => {
