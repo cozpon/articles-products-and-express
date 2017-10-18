@@ -13,6 +13,10 @@ app.engine('.hbs', exphbs ({
     }));
 app.set('view engine', '.hbs');
 
+const articles = require('./routes/articles');
+
+app.use('/articles', articles);
+
 const products = require('./routes/products');
 
 app.use('/products', products);

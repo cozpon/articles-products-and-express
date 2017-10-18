@@ -1,5 +1,4 @@
 //jshint esversion:6
-//const app = require('./server');
 const pgp = require('pg-promise')();
 const connection = {
     host: 'localhost',
@@ -24,7 +23,7 @@ class Products {
   listOne(id) {
     let query = 'SELECT id, name, price, inventory FROM products WHERE id = $1;';
     let params = id;
-    return db.one(query, params)
+    return db.oneOrNone(query, params)
     .then((product) => {
       return product;
     })
@@ -45,9 +44,8 @@ class Products {
     }
     let query = 'INSERT INTO products (name, price, inventory) VALUES ($1, $2, $3);';
     let params = [product.name, product.price, product.inventory];
-    return db.one(query, params)
+    return db.oneOrNone(query, params)
       .then((data) => {
-        console.log('DATA', data);
         return data;
       })
       .catch((error) => {
@@ -84,4 +82,53 @@ class Products {
 }
 
 
-module.exports = Products;
+
+
+class Articles {
+  listAll() {
+    let query = 'SELECT title, body, author FROM articles ORDER BY id;';
+    return db.query(query)
+    .then((data) => {
+      return data;
+    })
+    .catch((error) => {
+      console.log('ERROR', error);
+    });
+  }
+  create(data) {
+    console.log(data.title);
+    console.log(encodeURI(data.title));
+    const article = {
+      id : data.id,
+      title : data.title,
+      author : data.author,
+      body : data.body,
+      URL : encodeURI(data.title)
+    };
+    if (!article.title || !article.author || !article.body) {
+      throw new Error ('invalid');
+    }
+    let query = 'INSERT INTO articles (title, author, body, unique_url) VALUES ($1, $2, $3, $4);';
+    let params = [article.title, article.author, article.body, article.URL];
+    return db.oneOrNone(query, params)
+      .then((data) => {
+        return data;
+      })
+      .catch((error) => {
+        console.log('ERROR: 2', error); // print error
+      });
+  }
+
+
+
+
+
+
+
+}
+
+
+module.exports = {
+  Products : Products,
+  Articles : Articles
+};

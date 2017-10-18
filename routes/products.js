@@ -1,8 +1,8 @@
 //jshint esversion:6
 const express = require('express');
 const router = express.Router();
-const productsClass = require('../db/productsdb');
-const products = new productsClass();
+const database = require('../db/db');
+const products = new database.Products();
 
 router.get('/new',(req, res) => {
   return res.render('partials/products/new');
