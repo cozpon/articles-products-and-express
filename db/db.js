@@ -86,7 +86,7 @@ class Products {
 
 class Articles {
   listAll() {
-    let query = 'SELECT title, body, author FROM articles ORDER BY id;';
+    let query = 'SELECT title, author, body FROM articles ORDER BY id;';
     return db.query(query)
     .then((data) => {
       return data;
@@ -118,12 +118,42 @@ class Articles {
         console.log('ERROR: 2', error); // print error
       });
   }
-
-
-
-
-
-
+  listOne(url) {
+    let listQuery = 'SELECT id, title, author, body FROM articles WHERE unique_url = $1;';
+    let params = url;
+    return db.oneOrNone(listQuery, params)
+    .then((article) => {
+      return article;
+    })
+    .catch((error) => {
+      console.log('ERROR:', error);
+    });
+  }
+  update(url, replacementData) {
+    console.log(replacementData, "REAPLCE");
+    console.log(url, "ID");
+    let updateQuery = 'UPDATE articles SET title = $1, author = $2, body = $3 WHERE unique_url = $4;';
+    let params = [replacementData.title, replacementData.author, replacementData.body, url];
+    return db.none(updateQuery, params)
+    .then((article) => {
+      return article;
+    })
+    .catch((error) => {
+      console.log("ERROR", error);
+    });
+  }
+  delete(url) {
+    console.log(url);
+    let deleteQuery = 'DELETE FROM articles WHERE unique_url = $1;';
+    let params = url;
+    return db.oneOrNone(deleteQuery, params)
+    .then((article) => {
+      return article;
+    })
+    .catch((error) => {
+      console.log("ERROR", error);
+    });
+  }
 
 }
 

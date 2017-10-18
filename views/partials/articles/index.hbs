@@ -5,10 +5,10 @@
     {{#each articles}}
       <br>
       <li>Title : {{title}}</li>
-      <li>Body : {{body}}</li>
       <li>Author : {{author}}</li>
+      <li>Body : {{body}}</li>
       <br>
-      <form action="/articles/{{id}}/" method="GET" >
+      <form action="/articles/{{title}}/" method="GET" >
        <input type="submit" value="Select Article">
       </form>
     {{/each}}

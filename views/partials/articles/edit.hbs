@@ -2,9 +2,11 @@
 
 <div class=":title/edit">
   <form action="/articles/{{article.title}}?_method=PUT" method="POST" >
-  Title: <input type="text", name= "name" value='{{article.title}}'>
+  Title: <input type="text", name= "title" value='{{article.title}}'>
+  <br> <br>
   Author: <input type="text", name= "author" value='{{article.author}}'>
-  Body: <input type="text", name= "body" value ='{{article.body}}'>
+  <br><br>
+  Body: <textarea name= "body" cols="50" rows="10">{{article.body}}</textarea>
   <button type="submit">Submit</button>
 </form>
 </div>
@@ -16,7 +18,7 @@
   <li>body: {{article.body}}</li>
 </ul>
 <br>
-<a href="/articles/{{title}}?_method=DELETE" method="POST" class="button"> Delete Article </a>
+<a href="/articles/{{article.title}}?_method=DELETE" method="POST" class="button"> Delete Article </a>
 <br>
 <a href="/articles" class="button"> Back to Articles</a>
 {{> footer}}
